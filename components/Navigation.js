@@ -4,6 +4,9 @@ import DetailsScreen from "../pages/DetailsScreen";
 import ProfileScreen from "../pages/ProfileScreen";
 import CountScreen from '../pages/CountScreen';
 import StyleSheet from "../pages/StyleSheet" ;
+import FlexScreen from "../pages/FlexSceen";
+import LayoutScreen from "../pages/LayoutScreen";
+
 const Stack = createStackNavigator();
 
  export default function Navigation (){
@@ -14,6 +17,8 @@ const Stack = createStackNavigator();
          <Stack.Screen name="Profile" component={ProfileScreen} />
          <Stack.Screen name="Count" component={CountScreen} />
          <Stack.Screen name="StyleSheet" component={StyleSheet} />
+         <Stack.Screen name='Flex-example' component={FlexScreen} />
+         <Stack.Screen name="Layout-example" component={LayoutScreen} />
        </Stack.Navigator>
    );
  }

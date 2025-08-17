@@ -16,6 +16,14 @@ export default function HomeScreen({ navigation }) {
         title="Go to Count"
         onPress={() => navigation.navigate("Count")}
       />
+    <Button
+        title="Go to Flex-example"
+        onPress={() => navigation.navigate("Flex-example")}
+      />
+    <Button
+        title="Go to Layout-example"
+        onPress={() => navigation.navigate("Layout-example")}
+      />
     </View>
   );
 }
