@@ -12,6 +12,10 @@ export default function DetailsScreen ({navigation}){
         title="Go to Home"
         onPress={() => navigation.navigate("Home")}
     />
+        <Button
+        title="Go to StyleSheet"
+        onPress={() => navigation.navigate("StyleSheet")}
+    />
     </View>
   );
 }
