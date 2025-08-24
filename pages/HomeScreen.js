@@ -21,8 +21,12 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Flex-example")}
       />
     <Button
-        title="Go to Layout-example"
-        onPress={() => navigation.navigate("Layout-example")}
+        title="Go to Layout"
+        onPress={() => navigation.navigate("Layout")}
+      />
+    <Button
+        title="Go to Login"
+        onPress={() => navigation.navigate("Login")}
       />
     </View>
   );

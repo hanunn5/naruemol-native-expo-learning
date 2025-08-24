@@ -6,6 +6,7 @@ import CountScreen from '../pages/CountScreen';
 import StyleSheet from "../pages/StyleSheet" ;
 import FlexScreen from "../pages/FlexSceen";
 import LayoutScreen from "../pages/LayoutScreen";
+import LoginScreen from '../pages/LoginScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,8 @@ const Stack = createStackNavigator();
          <Stack.Screen name="Count" component={CountScreen} />
          <Stack.Screen name="StyleSheet" component={StyleSheet} />
          <Stack.Screen name='Flex-example' component={FlexScreen} />
-         <Stack.Screen name="Layout-example" component={LayoutScreen} />
+         <Stack.Screen name="Layout" component={LayoutScreen} />
+         <Stack.Screen name="Login" component={LoginScreen} />
        </Stack.Navigator>
    );
  }
