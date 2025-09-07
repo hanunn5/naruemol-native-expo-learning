@@ -1,20 +1,26 @@
 import React from 'react';
-import { View, Text, ImageBackground, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ setIsLoggedIn, setEmail, navigation }) {
+  const handleLogout = () => {
+    setIsLoggedIn(false);  // เปลี่ยนสถานะการล็อกอินเป็น false เมื่อผู้ใช้ออกจากระบบ
+    setEmail('');  // รีเซ็ตอีเมล
+    navigation.navigate('Login');  // นำทางกลับไปหน้า Login หลังจาก logout
+  };
+
   return (
     <ImageBackground
-      source={require('../assets/image10.png')}  // ใส่ชื่อไฟล์รูปภาพที่ต้องการเป็นพื้นหลัง
+      source={require('../assets/image10.png')}
       style={styles.background}
-      resizeMode="cover"  // ปรับให้รูปภาพครอบคลุมทั้งหน้าจอ
+      resizeMode="cover"
     >
       <View style={styles.container}>
-        {/* ข้อมูลโปรไฟล์ */}
         <Text style={styles.name}>อะไร๋หรอห์</Text>
         <Text style={styles.email}>test@demo.com</Text>
 
-        {/* ปุ่ม Log Out */}
-        <Text style={styles.logout}>Logout</Text>
+        <TouchableOpacity onPress={handleLogout}>
+          <Text style={styles.logout}>Logout</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -22,16 +28,16 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1,  // ให้รูปภาพครอบคลุมเต็มหน้าจอ
-    justifyContent: 'center',  // จัดตำแหน่งข้อความให้ตรงกลาง
-    alignItems: 'center',  // จัดตำแหน่งข้อความให้ตรงกลาง
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   container: {
-    width: '80%',  // ความกว้างของเนื้อหาภายใน
+    width: '80%',
     padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',  // ทำให้พื้นหลังโปร่งใส
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
     borderRadius: 10,
-    alignItems: 'center',  // จัดตำแหน่งให้อยู่กลาง
+    alignItems: 'center',
   },
   name: {
     fontSize: 30,
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
   },
   logout: {
     fontSize: 18,
-    color: '#ff4d4d',  // สีแดงสำหรับปุ่ม Log out
+    color: '#ff4d4d',
     textDecorationLine: 'underline',
   },
 });
