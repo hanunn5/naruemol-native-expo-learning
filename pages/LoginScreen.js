@@ -1,67 +1,86 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet, Text } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
-export default function LoginScreen({ navigation }) {
-  const [username, setUsername] = useState('');
+export default function LoginScreen({ setIsLoggedIn, setEmail }) {
+  const [inputEmail, setInputEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
-    if (username === 'user' && password === 'password') {
-      try {
-        await AsyncStorage.setItem('token', 'sampleToken'); // เก็บ token
-        navigation.navigate('Profile'); // ไปหน้า Profile
-      } catch (e) {
-        Alert.alert('Error', 'Failed to save token');
-      }
+  const handleLogin = () => {
+    if (inputEmail === 'test@demo.com' && password === '123456') {
+      setEmail(inputEmail);
+      setIsLoggedIn(true);
     } else {
-      Alert.alert('Invalid username or password');
+      alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-        autoCapitalize="none"
-      />
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      
-      <Button title="Login" onPress={handleLogin} />
-    </View>
+    <ImageBackground
+      source={require('../assets/image4.png')}  // ใช้ไฟล์ภาพเป็นพื้นหลัง
+      style={styles.background}
+      resizeMode="cover"  // ปรับให้ภาพครอบคลุมทั้งหน้าจอ
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={inputEmail}
+          onChangeText={setInputEmail}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        
+        {/* ปุ่ม Login */}
+        <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+          <Text style={styles.loginButtonText}>Login</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,  // ทำให้ ImageBackground ครอบคลุมทั้งหน้าจอ
+    justifyContent: 'center',  // จัดตำแหน่งให้อยู่กลางหน้าจอ
+    alignItems: 'center',  // จัดตำแหน่งให้อยู่กลางหน้าจอ
+  },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 30,
-    backgroundColor: '#f2f2f2',
+    width: '80%',  // ความกว้างของฟอร์ม
+    padding: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // ใส่พื้นหลังโปร่งใสให้ฟอร์ม
+    borderRadius: 10,
+    alignItems: 'center',  // จัดตำแหน่งให้อยู่กลาง
   },
   title: {
+    fontSize: 24,
     textAlign: 'center',
     marginBottom: 20,
-    fontSize: 24,
   },
   input: {
-    height: 40,
-    borderColor: '#888',
     borderWidth: 1,
-    marginBottom: 15,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
+    borderColor: '#ccc',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+    width: '100%',  // กำหนดความกว้างของ input ให้เต็มที่
+  },
+  loginButton: {
+    marginTop: 20,
+    backgroundColor: '#4CAF50',  // สีพื้นหลังของปุ่ม
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    borderRadius: 5,
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    textAlign: 'center',
   },
 });
