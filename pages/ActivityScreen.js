@@ -22,7 +22,7 @@ export default function ActivityScreen() {
 
       {/* Footer */}
       <ImageBackground
-        source={require('../assets/image6.jpg')} // ใส่รูปภาพสำหรับ Footer
+        source={require('../assets/image13.jpg')} // ใส่รูปภาพสำหรับ Footer
         style={styles.footer}
       >
         <Text style={styles.text}>Activity 3</Text>
